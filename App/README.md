@@ -1,36 +1,33 @@
-# Stack Agentic Commerce - App Development
+# Stacks Agentic Commerce - App
 
-This directory contains the Next.js frontend application.
+Next.js frontend with App Router.
 
 ## Structure
 
 ```
 App/
-├── app/               # Next.js App Router
-│   ├── layout.tsx
-│   ├── page.tsx
-│   ├── agents/        # Agent registry UI
-│   └── jobs/          # Job escrow UI
-├── components/
-│   ├── Header.tsx
-│   ├── WalletConnect.tsx
-│   └── JobCard.tsx
-└── utils/
-    └── stacks.ts
+├── src/
+│   ├── app/          # Pages (Home, Agents, Jobs)
+│   ├── components/   # UI components
+│   └── utils/        # Helper functions
+├── package.json
+├── tsconfig.json
+└── tailwind.config.js
 ```
 
 ## Getting Started
 
+1. Install dependencies:
 ```bash
-npm create next-app@latest .
-# Choose App Router, TypeScript, Tailwind CSS
-npm install @stacks/connect @stacks/transactions
+npm install
+```
+
+2. Run dev server:
+```bash
 npm run dev
 ```
 
-## Integration
-
-- Connect wallet with @stacks/connect
-- Interact with contracts via @stacks/transactions
-- Display agent registry
-- Create/view jobs
+3. Build:
+```bash
+npm run build
+```
