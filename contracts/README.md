@@ -6,6 +6,66 @@ Clarity smart contracts for PerkOS Stacks Agentic Commerce.
 
 Four core contracts providing agent identity, job escrow, reputation, and validation on Stacks.
 
+## Contract Addresses
+
+A Clarity contract's address is deterministic: `<deployer-principal>.<contract-name>`. The four
+contracts deploy together — Clarinet resolves the `agentic-commerce → reputation-registry`
+dependency (added so `complete-job`/`reject-job` can update reputation) automatically.
+
+### Local (simnet / devnet) — live now
+
+Deployer `ST1PQHQKV0RJXZFY1DGX8MNSNYVE3VGZJSRTPGZGM` (mnemonic in `settings/Devnet.toml`):
+
+| Contract | Address |
+|----------|---------|
+| agent-registry | `ST1PQHQKV0RJXZFY1DGX8MNSNYVE3VGZJSRTPGZGM.agent-registry` |
+| agentic-commerce | `ST1PQHQKV0RJXZFY1DGX8MNSNYVE3VGZJSRTPGZGM.agentic-commerce` |
+| reputation-registry | `ST1PQHQKV0RJXZFY1DGX8MNSNYVE3VGZJSRTPGZGM.reputation-registry` |
+| validation-registry | `ST1PQHQKV0RJXZFY1DGX8MNSNYVE3VGZJSRTPGZGM.validation-registry` |
+
+These resolve out of the box when running the test suite (`npm test`, in-process simnet).
+
+### Testnet — deployed ✅
+
+Deployer `ST16EWRC01S1SFWGBP63MW47VY8P3AYFA8VGEBGE5` (PerkOS). All four contracts are live on the
+Stacks testnet, and the commerce contract is registered as a reputation protocol-caller.
+
+| Contract | Address | Deploy tx |
+|----------|---------|-----------|
+| agent-registry | `ST16EWRC01S1SFWGBP63MW47VY8P3AYFA8VGEBGE5.agent-registry` | [`b11abfdc…`](https://explorer.hiro.so/txid/b11abfdc9a06cb01d3409c27c0f7a406fee9b2afa68945a1f58b1acb872c3c64?chain=testnet) |
+| reputation-registry | `ST16EWRC01S1SFWGBP63MW47VY8P3AYFA8VGEBGE5.reputation-registry` | [`3932f694…`](https://explorer.hiro.so/txid/3932f6943ded787cde887406b7e567d31d3eb95442b3e9cb56cceb541e7d9015?chain=testnet) |
+| validation-registry | `ST16EWRC01S1SFWGBP63MW47VY8P3AYFA8VGEBGE5.validation-registry` | [`3987a532…`](https://explorer.hiro.so/txid/3987a532e3422cc48d5b335672b7c5d26e285e724d907537fded8c4b5850a225?chain=testnet) |
+| agentic-commerce | `ST16EWRC01S1SFWGBP63MW47VY8P3AYFA8VGEBGE5.agentic-commerce` | [`5421781a…`](https://explorer.hiro.so/txid/5421781a5e66d00898c9390ed6d3371fe5b0b41f7841cd7674ecd1e929f45df9?chain=testnet) |
+
+Reputation protocol-caller wiring: [`0118385d…`](https://explorer.hiro.so/txid/0118385d9034fc852a6337d9eb521bd71121d84181f44d3634e534b073f07dad?chain=testnet)
+
+Deployed with [`scripts/deploy-testnet.mjs`](../scripts/deploy-testnet.mjs) (Stacks.js, reads the
+gitignored `.env`).
+
+### Mainnet — pending deployment
+
+Replace the default mnemonic in `settings/Mainnet.toml` with the PerkOS wallet **before** deploying
+(never ship mainnet with the default test key). Mainnet addresses use the `SP…` form:
+`SP….<contract-name>`.
+
+### Required post-deploy step
+
+`complete-job` / `reject-job` call `reputation-registry.update-job-stats` as the contract, which is
+protocol-gated. After deploying, whitelist the commerce contract once:
+
+```clarity
+(contract-call? .reputation-registry add-protocol-caller '<deployer>.agentic-commerce)
+```
+
+### Frontend wiring
+
+Point the app at the deployed deployer:
+
+```bash
+NEXT_PUBLIC_CONTRACT_ADDRESS=<deployer-principal>
+NEXT_PUBLIC_STACKS_NETWORK=testnet   # or mainnet
+```
+
 ## Contracts
 
 ### agent-registry.clar
@@ -139,11 +199,10 @@ Agent verification and capabilities.
 **Functions:**
 
 ```clarity
-;; Verify agent
+;; Verify agent (protocol-caller only)
 (define-public (verify-agent
   (agent principal)
-  (proof-hash (string-ascii 64))
-  (verification-type (string-ascii 32))
+  (proof-hash (buff 32))
   (capabilities (list 10 (string-ascii 32)))
 ))
 
