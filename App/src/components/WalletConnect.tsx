@@ -1,3 +1,5 @@
+'use client';
+
 import { ConnectButton } from "@stacks/connect-react";
 
 export default function WalletConnect() {
