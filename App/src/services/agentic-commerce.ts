@@ -12,6 +12,7 @@ export interface Job {
   expiredAt: number;
   status: number;
   deliverable?: string;
+  escrow?: number;
 }
 
 export async function getJob(jobId: number): Promise<Job | null> {
