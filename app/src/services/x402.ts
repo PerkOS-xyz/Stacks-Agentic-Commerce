@@ -1,27 +1,28 @@
-import { x402API, PaymentRequest, PaymentResponse } from '../utils/x402';
+import { x402API, StxPayment, PaymentResponse } from '../utils/x402';
 
-export function fundJobWithSTX(jobId: number, amount: number, walletAddress: string): Promise<PaymentResponse> {
-  const payment: PaymentRequest = {
+export async function fundJobWithSTX(jobId: number, amount: number, walletAddress: string): Promise<PaymentResponse> {
+  const payment: StxPayment = {
     jobId: jobId,
     recipient: walletAddress,
     amount: amount,
     token: 'stx',
   };
   
-  return x402API.payment(payment);
+  return await x402API.payment(payment);
 }
 
-export function checkJobPayment(jobId: number): Promise<boolean> {
-  return x402API.checkPayment(jobId).then(r => r.paid);
+export async function checkJobPayment(jobId: number): Promise<boolean> {
+  const response = await x402API.checkPayment(jobId);
+  return response.paid;
 }
 
-export function releasePayment(jobId: number, amount: number, providerAddress: string): Promise<PaymentResponse> {
-  const payment: PaymentRequest = {
+export async function releasePayment(jobId: number, amount: number, providerAddress: string): Promise<PaymentResponse> {
+  const payment: StxPayment = {
     jobId: jobId,
     recipient: providerAddress,
     amount: amount,
     token: 'stx',
   };
   
-  return x402API.payment(payment);
+  return await x402API.payment(payment);
 }
