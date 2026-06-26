@@ -8,7 +8,6 @@
 - submit-work
 - complete-job
 - reject-job
-- get-job
 
 ## How to Run
 
