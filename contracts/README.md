@@ -25,15 +25,22 @@ Deployer `ST1PQHQKV0RJXZFY1DGX8MNSNYVE3VGZJSRTPGZGM` (mnemonic in `settings/Devn
 
 These resolve out of the box when running the test suite (`npm test`, in-process simnet).
 
-### Testnet — pending deployment
+### Testnet — deployed ✅
 
-`settings/Testnet.toml` currently uses the default Clarinet mnemonic, whose deployer is also
-`ST1PQHQKV0RJXZFY1DGX8MNSNYVE3VGZJSRTPGZGM`. After `clarinet deployments apply --testnet` the
-addresses are `ST1PQHQKV0RJXZFY1DGX8MNSNYVE3VGZJSRTPGZGM.<contract-name>` (same table as above).
+Deployer `ST16EWRC01S1SFWGBP63MW47VY8P3AYFA8VGEBGE5` (PerkOS). All four contracts are live on the
+Stacks testnet, and the commerce contract is registered as a reputation protocol-caller.
 
-> ⚠️ This is the **well-known public test key**. For an owned deployment, replace the deployer
-> mnemonic in `settings/Testnet.toml` with the PerkOS wallet, then the addresses become
-> `<your-testnet-principal>.<contract-name>`.
+| Contract | Address | Deploy tx |
+|----------|---------|-----------|
+| agent-registry | `ST16EWRC01S1SFWGBP63MW47VY8P3AYFA8VGEBGE5.agent-registry` | [`b11abfdc…`](https://explorer.hiro.so/txid/b11abfdc9a06cb01d3409c27c0f7a406fee9b2afa68945a1f58b1acb872c3c64?chain=testnet) |
+| reputation-registry | `ST16EWRC01S1SFWGBP63MW47VY8P3AYFA8VGEBGE5.reputation-registry` | [`3932f694…`](https://explorer.hiro.so/txid/3932f6943ded787cde887406b7e567d31d3eb95442b3e9cb56cceb541e7d9015?chain=testnet) |
+| validation-registry | `ST16EWRC01S1SFWGBP63MW47VY8P3AYFA8VGEBGE5.validation-registry` | [`3987a532…`](https://explorer.hiro.so/txid/3987a532e3422cc48d5b335672b7c5d26e285e724d907537fded8c4b5850a225?chain=testnet) |
+| agentic-commerce | `ST16EWRC01S1SFWGBP63MW47VY8P3AYFA8VGEBGE5.agentic-commerce` | [`5421781a…`](https://explorer.hiro.so/txid/5421781a5e66d00898c9390ed6d3371fe5b0b41f7841cd7674ecd1e929f45df9?chain=testnet) |
+
+Reputation protocol-caller wiring: [`0118385d…`](https://explorer.hiro.so/txid/0118385d9034fc852a6337d9eb521bd71121d84181f44d3634e534b073f07dad?chain=testnet)
+
+Deployed with [`scripts/deploy-testnet.mjs`](../scripts/deploy-testnet.mjs) (Stacks.js, reads the
+gitignored `.env`).
 
 ### Mainnet — pending deployment
 
