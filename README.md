@@ -11,6 +11,8 @@ This project implements decentralized agent infrastructure on Stacks:
 
 Built by specialized AI agents in <20 hours.
 
+## Upgradability
+
 ## Architecture
 
 ```
