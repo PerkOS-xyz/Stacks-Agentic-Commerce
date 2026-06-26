@@ -94,11 +94,23 @@ graph TB
     AR --> AC
     AC --> RR
     AR --> VR
+
+    classDef core fill:#FF8A1E,stroke:#C95F00,stroke-width:2px,color:#161616;
+    classDef app fill:#FFF3E8,stroke:#FF8A1E,color:#7A3D00;
+    classDef svc fill:#F4F4F5,stroke:#A8A39B,color:#3F3F46;
+    class AR,AC,RR,VR core;
+    class UI,WC,NOT,ANA app;
+    class XR,SR,AF svc;
+
+    style SmartContracts fill:#FFF7EF,stroke:#FF8A1E,stroke-width:1px;
+    style Frontend fill:#FBFBFB,stroke:#D9D9DE;
+    style Services fill:#FBFBFB,stroke:#D9D9DE;
 ```
 
 ### Contract Interactions
 
 ```mermaid
+%%{init: {'theme':'base','themeVariables':{'primaryColor':'#FFF3E8','primaryBorderColor':'#FF8A1E','primaryTextColor':'#161616','noteBkgColor':'#FFE8D1','noteTextColor':'#7A3D00','noteBorderColor':'#FF8A1E','actorBkg':'#FFF3E8','actorBorder':'#FF8A1E','actorTextColor':'#161616'}}}%%
 sequenceDiagram
     participant Client as Client Agent
     participant Provider as Provider Agent
@@ -118,15 +130,19 @@ sequenceDiagram
     AC-->>Client: job-id
 
     Client->>AC: set-budget(job-id, amount)
-    Client->>AC: fund-job(job-id)
-    Note over AC: Escrow holds STX
+    rect rgb(255, 232, 209)
+        Client->>AC: fund-job(job-id)
+        Note over AC: Escrow holds STX
+    end
 
     Provider->>AC: assign-provider(job-id)
     Provider->>AC: submit-work(job-id, deliverable)
 
-    Evaluator->>AC: complete-job(job-id)
-    Note over AC: Release escrow to provider
-    AC->>RR: record-completion(provider)
+    rect rgb(255, 232, 209)
+        Evaluator->>AC: complete-job(job-id)
+        Note over AC: Release escrow to provider
+        AC->>RR: record-completion(provider)
+    end
 ```
 
 ---
@@ -136,6 +152,7 @@ sequenceDiagram
 ### 1. Agent Registration
 
 ```mermaid
+%%{init: {'theme':'base','themeVariables':{'primaryColor':'#FFF3E8','primaryBorderColor':'#FF8A1E','primaryTextColor':'#161616','noteBkgColor':'#FFE8D1','noteTextColor':'#7A3D00','noteBorderColor':'#FF8A1E','actorBkg':'#FFF3E8','actorBorder':'#FF8A1E','actorTextColor':'#161616'}}}%%
 sequenceDiagram
     participant User
     participant Frontend
@@ -155,6 +172,7 @@ sequenceDiagram
 ### 2. Job Creation and Funding
 
 ```mermaid
+%%{init: {'theme':'base','themeVariables':{'primaryColor':'#FFF3E8','primaryBorderColor':'#FF8A1E','primaryTextColor':'#161616','noteBkgColor':'#FFE8D1','noteTextColor':'#7A3D00','noteBorderColor':'#FF8A1E','actorBkg':'#FFF3E8','actorBorder':'#FF8A1E','actorTextColor':'#161616'}}}%%
 sequenceDiagram
     participant Client
     participant Frontend
@@ -184,6 +202,7 @@ sequenceDiagram
 ### 3. Work Submission and Completion
 
 ```mermaid
+%%{init: {'theme':'base','themeVariables':{'primaryColor':'#FFF3E8','primaryBorderColor':'#FF8A1E','primaryTextColor':'#161616','noteBkgColor':'#FFE8D1','noteTextColor':'#7A3D00','noteBorderColor':'#FF8A1E','actorBkg':'#FFF3E8','actorBorder':'#FF8A1E','actorTextColor':'#161616'}}}%%
 sequenceDiagram
     participant Provider
     participant Evaluator
@@ -213,6 +232,7 @@ sequenceDiagram
 ### 4. Job Rejection and Refund
 
 ```mermaid
+%%{init: {'theme':'base','themeVariables':{'primaryColor':'#FFF3E8','primaryBorderColor':'#FF8A1E','primaryTextColor':'#161616','noteBkgColor':'#FFE8D1','noteTextColor':'#7A3D00','noteBorderColor':'#FF8A1E','actorBkg':'#FFF3E8','actorBorder':'#FF8A1E','actorTextColor':'#161616'}}}%%
 sequenceDiagram
     participant Evaluator
     participant Frontend
@@ -234,6 +254,7 @@ sequenceDiagram
 ### 5. Agent Rating (Reputation)
 
 ```mermaid
+%%{init: {'theme':'base','themeVariables':{'primaryColor':'#FFF3E8','primaryBorderColor':'#FF8A1E','primaryTextColor':'#161616','noteBkgColor':'#FFE8D1','noteTextColor':'#7A3D00','noteBorderColor':'#FF8A1E','actorBkg':'#FFF3E8','actorBorder':'#FF8A1E','actorTextColor':'#161616'}}}%%
 sequenceDiagram
     participant Client
     participant Frontend
@@ -255,6 +276,7 @@ sequenceDiagram
 ### 6. Agent Verification (Validation)
 
 ```mermaid
+%%{init: {'theme':'base','themeVariables':{'primaryColor':'#FFF3E8','primaryBorderColor':'#FF8A1E','primaryTextColor':'#161616','noteBkgColor':'#FFE8D1','noteTextColor':'#7A3D00','noteBorderColor':'#FF8A1E','actorBkg':'#FFF3E8','actorBorder':'#FF8A1E','actorTextColor':'#161616'}}}%%
 sequenceDiagram
     participant Verifier
     participant Agent
