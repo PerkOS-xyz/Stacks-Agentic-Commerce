@@ -18,7 +18,7 @@ describe("Agent Registry", () => {
           function: "register-agent",
           args: [
             types.ascii("TestAgent"),
-            types.ascii("A test agent"),
+            types.ascii("Test description"),
             types.principal(accounts.get("account1")!.address),
             types.list([types.tuple({ name: types.ascii("web"), url: types.ascii("https://example.com") })]),
           ],
