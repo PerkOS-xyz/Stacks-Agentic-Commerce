@@ -46,7 +46,7 @@ clarinet deploy --network testnet
 
 ## Next Steps
 
-1. Deploy contracts to testnet (use Hiro Wallet)
+1. Deploy to testnet (use Hiro Wallet)
 2. Update frontend with deployed addresses
 3. Test wallet integration
 4. Test x402 payments
