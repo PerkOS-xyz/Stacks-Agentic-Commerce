@@ -6,27 +6,28 @@ export default {
   theme: {
     extend: {
       colors: {
+        // Stacks 2024 brand — orange honoring Bitcoin, on warm black
         brand: {
-          DEFAULT: "#5546FF", // Stacks purple
-          700: "#3B2BD1",
-          600: "#4836E6",
-          500: "#5546FF",
-          400: "#7C6CFF",
-          300: "#A99EFF",
+          DEFAULT: "#FF8A1E",
+          700: "#C95F00",
+          600: "#F2780A",
+          500: "#FF8A1E",
+          400: "#FFA24D",
+          300: "#FFC38A",
         },
         bitcoin: { DEFAULT: "#F7931A", 400: "#FFA940" },
         ink: {
-          950: "#08090F",
-          900: "#0B0D14",
-          850: "#0F121B",
-          800: "#141823",
-          700: "#1B2030",
+          950: "#070706",
+          900: "#0B0A09",
+          850: "#121110",
+          800: "#1A1715",
+          700: "#241F19",
         },
         mist: {
-          DEFAULT: "#E8E9F2",
-          100: "#E8E9F2",
-          300: "#A6AABC",
-          500: "#71768A",
+          DEFAULT: "#F3F1EE",
+          100: "#F3F1EE",
+          300: "#A8A39B",
+          500: "#75716A",
         },
       },
       fontFamily: {
@@ -34,8 +35,8 @@ export default {
         mono: ['"JetBrains Mono"', 'ui-monospace', 'monospace'],
       },
       boxShadow: {
-        card: "0 1px 0 0 rgba(255,255,255,0.04) inset, 0 10px 34px -16px rgba(0,0,0,0.7)",
-        glow: "0 0 0 1px rgba(85,70,255,0.30), 0 18px 50px -18px rgba(85,70,255,0.55)",
+        card: "0 1px 0 0 rgba(255,255,255,0.04) inset, 0 10px 34px -16px rgba(0,0,0,0.8)",
+        glow: "0 0 0 1px rgba(255,138,30,0.30), 0 18px 50px -18px rgba(255,138,30,0.5)",
       },
       maxWidth: { content: "1180px" },
     },

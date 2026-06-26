@@ -11,8 +11,8 @@ export default function Logo({ className = "h-7 w-7" }: { className?: string }) 
     <svg viewBox="0 0 32 32" className={className} fill="none" aria-hidden="true">
       <defs>
         <linearGradient id="pk-logo" x1="2" y1="2" x2="30" y2="30" gradientUnits="userSpaceOnUse">
-          <stop stopColor="#8C7DFF" />
-          <stop offset="1" stopColor="#5546FF" />
+          <stop stopColor="#FFB266" />
+          <stop offset="1" stopColor="#F2780A" />
         </linearGradient>
       </defs>
       {/* stacked layers — Stacks motif */}

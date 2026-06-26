@@ -6,9 +6,9 @@
 @tailwind utilities;
 
 :root {
-  --bg: #0B0D14;
-  --surface: #0F121B;
-  --surface-2: #141823;
+  --bg: #0B0A09;
+  --surface: #121110;
+  --surface-2: #1A1715;
 }
 
 @layer base {
@@ -21,13 +21,13 @@
     color: #E8E9F2;
     font-family: 'Satoshi', ui-sans-serif, system-ui, sans-serif;
     background-image:
-      radial-gradient(58rem 40rem at 12% -12%, rgba(85, 70, 255, 0.16), transparent 60%),
-      radial-gradient(48rem 38rem at 102% -6%, rgba(247, 147, 26, 0.07), transparent 55%);
+      radial-gradient(58rem 40rem at 12% -14%, rgba(255, 138, 30, 0.16), transparent 60%),
+      radial-gradient(46rem 36rem at 104% -8%, rgba(247, 147, 26, 0.10), transparent 55%);
     background-attachment: fixed;
     background-repeat: no-repeat;
   }
   h1, h2, h3, h4 { letter-spacing: -0.022em; font-weight: 700; }
-  ::selection { background: rgba(85, 70, 255, 0.35); color: #fff; }
+  ::selection { background: rgba(255, 138, 30, 0.32); color: #fff; }
 }
 
 @layer components {
