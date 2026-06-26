@@ -6,7 +6,9 @@
 clarinet test
 ```
 
-## Agent Registry Tests
+## Expected Tests
+
+### Agent Registry Tests
 
 - [x] register-agent: Creates new agent with metadata
 - [x] get-agent: Retrieves agent by ID
@@ -14,7 +16,7 @@ clarinet test
 - [x] update-agent: Updates agent metadata
 - [x] deactivate-agent: Deactivates an agent
 
-## Agentic Commerce Tests
+### Agentic Commerce Tests
 
 - [x] create-job: Creates new job with budget
 - [x] set-budget: Sets budget for job
@@ -28,11 +30,6 @@ clarinet test
 - [x] STX payment: Native token payments
 - [x] sBTC payment: sBTC via SIP-010
 - [x] USDCx payment: USDCx via SIP-010
-
-## Upgrade Tests
-
-- [x] upgrade-implementation: Only owner can upgrade
-- [x] upgrade-rejected: Non-owner attempts rejected
 
 ## Next Steps
 
