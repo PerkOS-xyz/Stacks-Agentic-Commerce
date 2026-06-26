@@ -293,7 +293,7 @@ sequenceDiagram
 
 ```bash
 # Clone repository
-git clone https://github.com/JulioMCruz/Stacks-Agentic-Commerce.git
+git clone https://github.com/PerkOS-xyz/Stacks-Agentic-Commerce.git
 cd Stacks-Agentic-Commerce
 
 # Install frontend dependencies

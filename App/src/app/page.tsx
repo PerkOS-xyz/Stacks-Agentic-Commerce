@@ -22,7 +22,7 @@ export default function Home() {
               Launch Dashboard
             </Link>
             <a
-              href="https://github.com/JulioMCruz/Stacks-Agentic-Commerce"
+              href="https://github.com/PerkOS-xyz/Stacks-Agentic-Commerce"
               target="_blank"
               rel="noopener noreferrer"
               className="bg-gray-700 text-white px-6 py-3 rounded-lg hover:bg-gray-600 transition-colors"

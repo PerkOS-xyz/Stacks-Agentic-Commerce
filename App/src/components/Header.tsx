@@ -16,7 +16,7 @@ export default function Header() {
               Jobs
             </Link>
             <Link 
-              href="https://github.com/JulioMCruz/Stacks-Agentic-Commerce" 
+              href="https://github.com/PerkOS-xyz/Stacks-Agentic-Commerce" 
               target="_blank" 
               rel="noopener noreferrer"
               className="hover:text-gray-300"
