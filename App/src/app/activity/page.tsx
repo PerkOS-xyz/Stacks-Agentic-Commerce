@@ -13,6 +13,7 @@ import {
   Star,
   BadgeCheck,
   ExternalLink,
+  Download,
 } from "lucide-react";
 import { getRecentActivity, EXPLORER, CHAIN_PARAM, RecentTx } from "../../services/onchain-stats";
 
@@ -58,6 +59,29 @@ export default function ActivityLogPage() {
     setLoading(false);
   }
 
+  function downloadReport() {
+    const head = ["time", "type", "contract", "function", "sender", "status", "tx", "explorer"];
+    const rows = items.map((t) => [
+      t.time ?? "",
+      FN[t.fn]?.label ?? t.fn,
+      t.contract,
+      t.fn,
+      t.sender,
+      t.status,
+      t.txId,
+      `${EXPLORER}/txid/${t.txId}?chain=${CHAIN_PARAM}`,
+    ]);
+    const csv = [head, ...rows]
+      .map((r) => r.map((c) => `"${String(c).replace(/"/g, '""')}"`).join(","))
+      .join("\n");
+    const url = URL.createObjectURL(new Blob([csv], { type: "text/csv" }));
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = `perkos-activity-${CHAIN_PARAM}.csv`;
+    a.click();
+    URL.revokeObjectURL(url);
+  }
+
   const filtered =
     filter === "all" ? items : items.filter((i) => (FN[i.fn]?.cat ?? "other") === filter);
 
@@ -72,9 +96,14 @@ export default function ActivityLogPage() {
           <h1 className="text-3xl font-bold tracking-tight">Activity Log</h1>
           <p className="mt-1.5 text-mist-300">Every contract call on-chain, newest first. Click any row to verify.</p>
         </div>
-        <button onClick={load} className="btn-ghost">
-          <RefreshCw className="h-4 w-4" /> Refresh
-        </button>
+        <div className="flex gap-2">
+          <button onClick={downloadReport} disabled={!items.length} className="btn-ghost disabled:opacity-40">
+            <Download className="h-4 w-4" /> Report (CSV)
+          </button>
+          <button onClick={load} className="btn-ghost">
+            <RefreshCw className="h-4 w-4" /> Refresh
+          </button>
+        </div>
       </div>
 
       <div className="mt-6 flex flex-wrap gap-2">
